@@ -30,4 +30,11 @@ RSpec.describe BlogPost do
       it { expect(blog_post).to respond_to(:comments=) }
     end
   end
+
+  describe '#new' do
+    it 'is an instance of User' do
+      post_attributes = FactoryGirl.attributes_for(:blog_post)
+      expect(BlogPost.new(post_attributes)).to be_a BlogPost
+    end
+  end
 end
