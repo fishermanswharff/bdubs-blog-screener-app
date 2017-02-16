@@ -4,6 +4,8 @@ class CreateBlogPosts < ActiveRecord::Migration[5.0]
       t.text :title, null: false
       t.text :body, null: false
       t.references :user, index: true
+      t.integer :comment_count
+      t.integer :media_count
       t.timestamps
     end
   end
