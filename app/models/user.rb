@@ -23,4 +23,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :blog_posts
+  has_many :comments, class_name: 'BlogPostComment'
 end

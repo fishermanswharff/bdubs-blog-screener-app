@@ -18,8 +18,7 @@ Create/write models, and associations between:
 * blog comments
 * blog media (video/image) [hint](http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html)
 
-#### Above and Beyond:
-
+#### Extra Credit:
 Implement the tag class
 * should be polymorphic
 * a blog post, comment, or attachment could be tagged
@@ -35,10 +34,13 @@ Create views for:
 * blog:show should be a blog post and its attributes, along with comments and any media associated with the post.
 * If you get this far, we’ve included the gems react_rails and haml. Feel free to use plain .erb templates, or add any front-end framework, CSS/JS or otherwise. Show us what you can do.
 
-#### Surprise and Delight:
-* Allow for nested comments
+Deploy this app to a cloud-hosting service. There are many free cloud-based hosting services. Heroku is one.
+
+#### Above and Beyond:
+* Allow for nested comments—the database is setup for this relationship already
+* Host the images/videos in the cloud, something like an AWS S3 Bucket.
 * Capybara tests
-* Robust test coverage
+* Robust unit/functional test coverage
 * Service Objects
 * Code thats easy to reason about
 * Code thats easy to change

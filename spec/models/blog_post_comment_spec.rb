@@ -17,26 +17,52 @@ RSpec.describe BlogPostComment do
 
   let(:comment) { FactoryGirl.create(:blog_post_comment) }
 
+  context 'relationships' do
+    describe 'belongs_to :post, class_name: "BlogPost", foreign_key: "parent_id"' do
+      it { expect(comment).to respond_to(:post) }
+      it { expect(comment).to respond_to(:post=) }
+    end
+
+    describe 'belongs_to :commenter, class_name: "BlogPostComment", foreign_key: "parent_id"' do
+      it { expect(comment).to respond_to(:commenter) }
+      it { expect(comment).to respond_to(:commenter=) }
+    end
+
+    describe 'has_many :comments, class_name: "BlogPostComment"' do
+      it { expect(comment).to respond_to(:comments) }
+      it { expect(comment).to respond_to(:comments=) }
+    end
+  end
+
   context 'attributes' do
-    describe 'blog_post' do
-      # hint: this is an alias for the 'parent' column
-      it { expect(comment).to respond_to(:blog_post) }
-      it { expect(comment).to respond_to(:blog_post=) }
-    end
-
-    describe 'user' do
-      it { expect(comment).to respond_to(:user) }
-      it { expect(comment).to respond_to(:user=) }
-    end
-
-    describe 'comment' do
-      it { expect(comment).to respond_to(:comment) }
-      it { expect(comment).to respond_to(:comment=) }
-    end
-
     describe 'body' do
       it { expect(comment).to respond_to(:body) }
       it { expect(comment).to respond_to(:body=) }
+    end
+  end
+
+  context 'validations' do
+    describe 'post' do
+      it 'must be present' do
+        new_comment = BlogPostComment.new(
+          body: 'Aren’t you a little short for a storm trooper?',
+          commenter: FactoryGirl.create(:user),
+          parent_type: 'BlogPost'
+        )
+        expect(new_comment).not_to be_valid
+        expect(new_comment.errors[:post]).to eq ['must exist']
+      end
+    end
+
+    describe 'commenter' do
+      it 'must be present' do
+        new_comment = BlogPostComment.new(
+          body: 'Aren’t you a little short for a storm trooper?',
+          post: FactoryGirl.create(:blog_post)
+        )
+        expect(new_comment).not_to be_valid
+        expect(new_comment.errors[:commenter]).to eq ['must exist']
+      end
     end
   end
 

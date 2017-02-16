@@ -4,6 +4,12 @@ RSpec.shared_examples 'blog post attachments' do
 
   let(:attachment) { FactoryGirl.create(:blog_post_attachment) }
 
+  context 'relationships' do
+    describe 'belongs_to :blog_post' do
+      it { expect(attachment.blog_post).to be_a BlogPost }
+    end
+  end
+
   context 'attributes' do
     describe 'title' do
       it { expect(attachment).to respond_to(:title) }

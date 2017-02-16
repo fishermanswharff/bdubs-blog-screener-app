@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
       it { expect(user).to respond_to(:blog_posts=) }
 
       it 'can be assigned' do
-        user.blog_posts = FactoryGirl.create_list(:blog_posts, 12, user: user)
+        user.blog_posts = FactoryGirl.create_list(:blog_post, 12, author: user)
         expect(user.blog_posts.count).to eq 12
       end
     end
