@@ -12,10 +12,5 @@
 #  updated_at    :datetime         not null
 #
 
-FactoryGirl.define do
-  factory :blog_post do
-    title Faker::Hipster.sentence
-    body Faker::Hipster.paragraphs(3)
-    user
-  end
+class BlogPost < ApplicationRecord
 end
